@@ -42,8 +42,9 @@ Perlu dicatat bahwa manajemen keuangan dan akuntansi organisasi tidak termasuk d
 | **PW** | Pengurus Wilayah (Tingkat Provinsi) |
 | **PD** | Pengurus Daerah (Tingkat Kota/Kabupaten) |
 | **PK** | Pengurus Komisariat (Tingkat Kampus) |
+| **BPK** | Bidang Pembinaan Kader |
 | **BPW** | Bidang Pengembangan Wilayah (Unit pengelola struktur wilayah) |
-| **BPD/BPK** | Bidang Pengembangan Daerah/Komisariat (Unit pengelola struktur di bawahnya) |
+| **BPD/BPKom** | Bidang Pengembangan Daerah/Komisariat (Unit pengelola struktur di bawahnya) |
 | **DM** | Dauroh Marhalah (Jenjang Pengkaderan Utama) |
 | **MoT** | *Master of Training* (Pimpinan sidang pelatihan) |
 | **AB** | Anggota Biasa (Status keanggotaan berjenjang 1, 2, 3) |
@@ -78,7 +79,7 @@ Fase ini difokuskan pada pemetaan relasi kader dalam struktur organisasi serta p
 
 * **Target Modul:** Modul 4.2 (Basis Data Kepengurusan) & Modul 4.6 (Kegiatan Organisasi).  
 * **Fitur Kunci:** Hierarki Wilayah/Daerah, Manajemen Surat Keputusan (SK) & Periode Jabatan, Pemetaan Jabatan, serta Manajemen Musyawarah/Rapat.  
-* **Target Pengguna:** Administrator BPW/BPD/BPK & Pengurus Harian (Ketua Umum/Sekretaris Jenderal).
+* **Target Pengguna:** Administrator BPW/BPD/BPKom & Pengurus Harian (Ketua Umum/Sekretaris Jenderal).
 
 #### **Fase 3: Implementasi KTA & Publikasi (*Public & User Facing*)**
 
@@ -106,7 +107,7 @@ Sistem menerapkan model kendali akses berbasis peran (*Role-Based Access Control
 |  | Admin Kaderisasi (PD) | Mengelola Dauroh Daerah (DM2, DPMK, TFI) & data kader dalam lingkup Daerah. |
 |  | Admin Kaderisasi (PK) | Mengelola Dauroh Komisariat (DM1) & data kader dalam lingkup Komisariat. |
 | **Pengembangan Wilayah** | Admin BPW (PP) | Akses Baca/Tulis Basis Data Induk Kepengurusan tingkat Nasional. Manajemen Akun Pengurus. |
-|  | Admin BPD (PW) & BPK (PD) | Akses Baca/Tulis Basis Data Induk Kepengurusan di bawah koordinasinya. |
+|  | Admin BPD (PW) & BPKom (PD) | Akses Baca/Tulis Basis Data Induk Kepengurusan di bawah koordinasinya. |
 | **Pengurus Harian** | Ketum / Sekjend (PW/PD/PK) | Akses Sunting data profil kepengurusan **sendiri** & **Manajemen Kegiatan Organisasi**. |
 | **Individu** | Kader / Anggota | Login personal. Penyuntingan data pribadi. Akses riwayat (*Read-Only*). |
 | **Publikasi** | Admin Humas (Semua Level) | Manajemen konten berita. |
@@ -256,7 +257,7 @@ Untuk menghindari kueri berulang (masalah *N+1 Query*) pada tabel izin setiap ka
 | **Admin Kaderisasi** | Akun Individu (Kader) | YA | YA | YA | YA | Mengelola SDM |
 |  | Akun Pengurus Harian | TIDAK | BACA | TIDAK | TIDAK |  |
 |  | **Kegiatan Organisasi** | TIDAK | BACA | TIDAK | TIDAK |  |
-| **Admin BPW/D/K** | Akun Individu (Kader) | TIDAK | BACA | TIDAK | TIDAK |  |
+| **Admin BPW/D/Kom** | Akun Individu (Kader) | TIDAK | BACA | TIDAK | TIDAK |  |
 |  | Akun Pengurus Harian | YA | YA | YA | YA | Mengelola Struktural |
 | **Pengurus Harian** | Akun Pengurus Harian | TIDAK | BACA | YA (Sendiri) | TIDAK | Pembaruan profil organisasi mandiri |
 |  | **Kegiatan Organisasi** | YA | YA | YA | YA | Mengelola Rapat/Musyawarah |
