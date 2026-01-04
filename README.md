@@ -2,7 +2,7 @@
 # **SOFTWARE REQUIREMENT SPECIFICATION (SRS)**
 
 Nama Proyek: KAMMI.id v2.0  
-Versi Dokumen: 1.0 (Revisi Formal)  
+Versi Dokumen: 1.1 (Pembaruan ACL & Schema)  
 Tanggal: 25 Mei 2024  
 Disiapkan Oleh: Tim Pengembang KAMMI.id
 
@@ -15,7 +15,7 @@ Disiapkan Oleh: Tim Pengembang KAMMI.id
 5. [Kebutuhan Non-Fungsional](https://www.google.com/search?q=%235-kebutuhan-non-fungsional)  
 6. [Lampiran Teknis](https://www.google.com/search?q=%236-lampiran-teknis)
 
-## **1\. PENDAHULUAN**
+## **1. PENDAHULUAN**
 
 ### **1.1 Tujuan**
 
@@ -46,7 +46,7 @@ Perlu dicatat bahwa manajemen keuangan dan akuntansi organisasi tidak termasuk d
 | **BPD/BPK** | Bidang Pengembangan Daerah/Komisariat (Unit pengelola struktur di bawahnya) |
 | **DM** | Dauroh Marhalah (Jenjang Pengkaderan Utama) |
 | **MoT** | *Master of Training* (Pimpinan sidang pelatihan) |
-| **AB** | Anggota Biasa (Status keanggotaan berjenjang 1, 2, 3\) |
+| **AB** | Anggota Biasa (Status keanggotaan berjenjang 1, 2, 3) |
 | **TFI** | *Training For Instructors* |
 | **TPD** | *Training* Pengkaderan Daerah |
 | **DPMK** | Dauroh Pemandu Madrasah KAMMI |
@@ -88,7 +88,7 @@ Fase ini berorientasi pada penyediaan antarmuka visual bagi pengguna akhir dan s
 * **Fitur Kunci:** Pembangkitan Kode QR KTA, Validasi Keaslian KTA, CMS Berita, dan Dasbor Publikasi per Wilayah.  
 * **Target Pengguna:** Seluruh Anggota (Pengguna Individu) & Administrator Humas.
 
-## **2\. DESKRIPSI UMUM**
+## **2. DESKRIPSI UMUM**
 
 ### **2.1 Perspektif Produk**
 
@@ -124,7 +124,7 @@ Sistem menerapkan model kendali akses berbasis peran (*Role-Based Access Control
 * **Validasi Instruktur:** Penunjukan *Master of Training* (MoT) harus melalui validasi status instruktur oleh sistem sebelum agenda dapat dibuat.  
 * **Segregasi Manajemen Akun:** Administrator Kaderisasi dibatasi hanya pada pengelolaan akun personal kader, sedangkan Administrator Pengembangan (BPW/D/K) dibatasi pada pengelolaan akun jabatan struktural.
 
-## **3\. KEBUTUHAN ANTARMUKA EKSTERNAL**
+## **3. KEBUTUHAN ANTARMUKA EKSTERNAL**
 
 ### **3.1 Antarmuka Pengguna (User Interfaces)**
 
@@ -137,7 +137,7 @@ Sistem menerapkan model kendali akses berbasis peran (*Role-Based Access Control
 * Pustaka (*Library*) Pembangkit Kode QR/Barcode.  
 * (Opsional) API Gerbang WhatsApp (*WhatsApp Gateway*) untuk notifikasi.
 
-## **4\. FITUR SISTEM (KEBUTUHAN FUNGSIONAL)**
+## **4. FITUR SISTEM (KEBUTUHAN FUNGSIONAL)**
 
 ### **4.1 Modul: Basis Data Kader**
 
@@ -175,23 +175,23 @@ Sistem menerapkan model kendali akses berbasis peran (*Role-Based Access Control
   * **PP (Pusat):** Memiliki akses ke seluruh jenjang.  
 * **REQ-TRN-002 (Atribut Data Dauroh):** Pembuatan agenda dauroh wajib mencakup atribut berikut:  
   * Lokasi Pelaksanaan (Kota/Kabupaten).  
-  * Tanggal (Rentang: Tanggal Mulai \- Tanggal Selesai).  
+  * Tanggal (Rentang: Tanggal Mulai - Tanggal Selesai).  
   * Penyelenggara (Terikat otomatis dengan ID Struktur pembuat).  
   * *Master of Training* (Pencarian dari basis data kader).  
   * Fitur *Retro-fill* (Pengisian data lampau) untuk input data pelatihan historis.  
-* **REQ-TRN-003 (Validasi MoT):** Sistem diprogram untuk menolak pemilihan *Master of Training* (MoT) apabila kader yang dipilih tidak memiliki status is_instructor \= true.  
+* **REQ-TRN-003 (Validasi MoT):** Sistem diprogram untuk menolak pemilihan *Master of Training* (MoT) apabila kader yang dipilih tidak memiliki status is_instructor = true.  
 * **REQ-TRN-004 (Manajemen Peserta):**  
   * Administrator dapat menambahkan peserta melalui pencarian Nama/KTA.  
   * Peserta diwajibkan telah terdaftar dalam sistem minimal sebagai "Anggota" (Pra-DM1).  
   * Sistem melakukan validasi prasyarat (contoh: Peserta DM2 wajib memiliki status AB1).  
 * **REQ-TRN-005 (Kelulusan & Transisi Status):** Apabila Administrator menetapkan status peserta "LULUS" pada suatu agenda, sistem secara otomatis memperbarui profil kader sebagai berikut:  
-  * Lulus DM1 \-\> Status Keanggotaan: **AB1**.  
-  * Lulus DM2 \-\> Status Keanggotaan: **AB2**.  
-  * Lulus DM3 \-\> Status Keanggotaan: **AB3**.  
-  * Lulus DPMK \-\> Status Kompetensi: **Pemandu**.  
-  * Lulus TFI \-\> Status Kompetensi: **Instruktur**.  
-  * Lulus TPD \-\> Status Kompetensi: **Pemandu & Instruktur**.  
-  * **Lulus OTHER** \-\> Tidak mengakibatkan perubahan status keanggotaan (hanya tercatat dalam riwayat).
+  * Lulus DM1 -> Status Keanggotaan: **AB1**.  
+  * Lulus DM2 -> Status Keanggotaan: **AB2**.  
+  * Lulus DM3 -> Status Keanggotaan: **AB3**.  
+  * Lulus DPMK -> Status Kompetensi: **Pemandu**.  
+  * Lulus TFI -> Status Kompetensi: **Instruktur**.  
+  * Lulus TPD -> Status Kompetensi: **Pemandu & Instruktur**.  
+  * **Lulus OTHER** -> Tidak mengakibatkan perubahan status keanggotaan (hanya tercatat dalam riwayat).
 
 ### **4.6 Modul: Manajemen Kegiatan Organisasi**
 
@@ -207,20 +207,49 @@ Sistem menerapkan model kendali akses berbasis peran (*Role-Based Access Control
   * Tanggal (Rentang Waktu).  
   * Keterangan/Notulensi (Opsional, lampiran berkas).
 
-## **5\. KEBUTUHAN NON-FUNGSIONAL**
+## **5. KEBUTUHAN NON-FUNGSIONAL**
 
 ### **5.1 Performa**
 
-* Sistem harus mampu menangani ribuan akses secara bersamaan (*concurrency*) pada saat momentum kegiatan besar.
+* Sistem harus mampu menangani ribuan akses secara bersamaan (*concurrency*) pada saat momentum kegiatan besar.  
+* Implementasi mekanisme *caching* pada ACL (*Access Control List*) untuk mengurangi beban kueri basis data pada setiap permintaan.
 
 ### **5.2 Keamanan**
 
 * Isolasi Data (*Data Isolation*) antar wilayah harus diterapkan secara ketat.  
-* Penerapan enkripsi pada data sensitif seperti NIK dan Nomor Telepon.
+* Penerapan enkripsi pada data sensitif seperti NIK dan Nomor Telepon.  
+* Penerapan prinsip *Least Privilege* dengan strategi *Deny All* secara default.
 
-## **6\. LAMPIRAN TEKNIS**
+## **6. LAMPIRAN TEKNIS**
 
-### **6.1 Skema Daftar Kendali Akses (ACL)**
+### **6.1 Strategi Implementasi ACL (Access Control List)**
+
+Implementasi keamanan sistem akan menyeimbangkan aspek keamanan, pemeliharaan, dan kinerja dengan mengadopsi model *Role-Based Access Control* (RBAC) yang dikombinasikan dengan *Attribute-Based Access Control* (ABAC) untuk kasus spesifik (seperti kepemilikan data).
+
+#### **A. Prinsip Desain**
+
+1. **Tolak Secara Default (*Default to Deny All*):** Sistem akan memblokir semua akses secara default. Izin hanya diberikan secara eksplisit untuk tindakan tertentu.  
+2. **Berbasis Peran (*Role-Based*):** Izin (*Permission*) tidak diberikan langsung kepada pengguna (*User*), melainkan dikelompokkan ke dalam Peran (*Role*). Pengguna kemudian ditetapkan ke dalam satu atau lebih Peran.  
+3. **Pemisahan AuthN & AuthZ:** Proses Otentikasi (Siapa Anda?) dipisahkan secara tegas dari Otorisasi (Apa yang boleh Anda lakukan?).
+
+#### **B. Pola Implementasi**
+
+1. **Granularitas Izin:** Penamaan izin menggunakan konvensi SumberDaya:Aksi (contoh: dauroh:create, kader:view_sensitive, news:publish).  
+2. **Pola Pengawal (*Guard Pattern*):** Logika pengecekan akses dipusatkan pada layanan otorisasi (*Authorization Service/Middleware*), menghindari penyebaran logika if (user.role === 'admin') yang tidak terstruktur pada kode aplikasi.  
+   * *Bad Practice:* Cek peran langsung di UI.  
+   * *Good Practice:* if (AuthService.can(user, 'dauroh:create')) { ... }  
+3. **Penanganan Kepemilikan (*Ownership/ABAC*):** Untuk kasus di mana pengguna hanya boleh mengedit datanya sendiri, sistem menerapkan pengecekan hibrida:  
+   * Cek 1 (ACL): Apakah pengguna memiliki kapabilitas profile:edit?  
+   * Cek 2 (Ownership): Apakah profile.user_id === current_user.id?
+
+#### **C. Optimasi Performa**
+
+Untuk menghindari kueri berulang (masalah *N+1 Query*) pada tabel izin setiap kali halaman dimuat:
+
+* Izin yang telah dikomputasi (*computed permissions*) akan disimpan dalam *cache* (Redis atau sesi pengguna/JWT) saat *login*.  
+* *Cache* akan divalidasi ulang (*invalidate*) hanya jika terjadi perubahan pada penetapan peran pengguna.
+
+#### **D. Matriks Hak Akses (High-Level)**
 
 | Peran (Role) | Objek Sasaran | Buat (Create) | Baca (Read) | Ubah (Update) | Hapus (Delete) | Keterangan |
 | :---- | :---- | :---- | :---- | :---- | :---- | :---- |
@@ -235,10 +264,17 @@ Sistem menerapkan model kendali akses berbasis peran (*Role-Based Access Control
 
 ### **6.2 Skema Basis Data (Konseptual ERD)**
 
-Berikut adalah diagram relasi entitas (*Entity Relationship Diagram*) konseptual yang mencakup seluruh fitur, termasuk entitas tambahan ORGANIZATION_EVENTS.
+Skema berikut telah dinormalisasi untuk mendukung RBAC yang fleksibel. Tabel USERS tidak lagi menyimpan peran sebagai string sederhana, melainkan terhubung melalui tabel relasi ke ROLES dan PERMISSIONS.
 
 ```mermaid
 erDiagram  
+    %% Auth & RBAC Modules  
+    USERS ||--o{ USER_ROLES : has  
+    ROLES ||--o{ USER_ROLES : assigned_to  
+    ROLES ||--o{ ROLE_PERMISSIONS : contains  
+    PERMISSIONS ||--o{ ROLE_PERMISSIONS : defined_in  
+      
+    %% Core System  
     USERS ||--|| PROFILES : owns  
     PROFILES ||--o{ POSITIONS : holds  
     PROFILES ||--o{ TRAINING_BATCHES : manages_as_mot  
@@ -251,15 +287,38 @@ erDiagram
     ORGANIZATIONS ||--o{ TRAINING_BATCHES : organizes  
     ORGANIZATIONS ||--o{ ORGANIZATION_EVENTS : holds
 
-    ORGANIZATION_PERIODS ||--o{ POSITIONS : contains
-
+    ORGANIZATION_PERIODS ||--o{ POSITIONS : contains  
     TRAINING_BATCHES ||--o{ TRAINING_PARTICIPANTS : contains
 
     USERS {  
         int id PK  
         string email  
         string password_hash  
-        string role "SuperAdmin, Kaderisasi, BPW, Humas, Member"  
+        timestamp created_at  
+    }
+
+    ROLES {  
+        int id PK  
+        string name "e.g., Admin Kaderisasi, SuperAdmin"  
+        string slug "e.g., admin_kaderisasi"  
+        string description  
+    }
+
+    PERMISSIONS {  
+        int id PK  
+        string name "e.g., Create Dauroh"  
+        string slug "e.g., dauroh:create"  
+        string resource "e.g., dauroh"  
+    }
+
+    USER_ROLES {  
+        int user_id FK  
+        int role_id FK  
+    }
+
+    ROLE_PERMISSIONS {  
+        int role_id FK  
+        int permission_id FK  
     }
 
     PROFILES {  
