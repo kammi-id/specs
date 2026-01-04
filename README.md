@@ -179,7 +179,7 @@ Sistem menerapkan model kendali akses berbasis peran (*Role-Based Access Control
   * Penyelenggara (Terikat otomatis dengan ID Struktur pembuat).  
   * *Master of Training* (Pencarian dari basis data kader).  
   * Fitur *Retro-fill* (Pengisian data lampau) untuk input data pelatihan historis.  
-* **REQ-TRN-003 (Validasi MoT):** Sistem diprogram untuk menolak pemilihan *Master of Training* (MoT) apabila kader yang dipilih tidak memiliki status is\_instructor \= true.  
+* **REQ-TRN-003 (Validasi MoT):** Sistem diprogram untuk menolak pemilihan *Master of Training* (MoT) apabila kader yang dipilih tidak memiliki status is_instructor \= true.  
 * **REQ-TRN-004 (Manajemen Peserta):**  
   * Administrator dapat menambahkan peserta melalui pencarian Nama/KTA.  
   * Peserta diwajibkan telah terdaftar dalam sistem minimal sebagai "Anggota" (Pra-DM1).  
@@ -235,100 +235,100 @@ Sistem menerapkan model kendali akses berbasis peran (*Role-Based Access Control
 
 ### **6.2 Skema Basis Data (Konseptual ERD)**
 
-Berikut adalah diagram relasi entitas (*Entity Relationship Diagram*) konseptual yang mencakup seluruh fitur, termasuk entitas tambahan ORGANIZATION\_EVENTS.
+Berikut adalah diagram relasi entitas (*Entity Relationship Diagram*) konseptual yang mencakup seluruh fitur, termasuk entitas tambahan ORGANIZATION_EVENTS.
 
 ```mermaid
 erDiagram  
     USERS ||--|| PROFILES : owns  
     PROFILES ||--o{ POSITIONS : holds  
-    PROFILES ||--o{ TRAINING\_BATCHES : manages\_as\_mot  
-    PROFILES ||--o{ TRAINING\_PARTICIPANTS : attends  
+    PROFILES ||--o{ TRAINING_BATCHES : manages_as_mot  
+    PROFILES ||--o{ TRAINING_PARTICIPANTS : attends  
     PROFILES ||--o{ NEWS : authors
 
-    ORGANIZATIONS ||--o{ ORGANIZATIONS : parent\_of  
-    ORGANIZATIONS ||--o{ ORGANIZATION\_PERIODS : has\_periods  
+    ORGANIZATIONS ||--o{ ORGANIZATIONS : parent_of  
+    ORGANIZATIONS ||--o{ ORGANIZATION_PERIODS : has_periods  
     ORGANIZATIONS ||--o{ NEWS : publishes  
-    ORGANIZATIONS ||--o{ TRAINING\_BATCHES : organizes  
-    ORGANIZATIONS ||--o{ ORGANIZATION\_EVENTS : holds
+    ORGANIZATIONS ||--o{ TRAINING_BATCHES : organizes  
+    ORGANIZATIONS ||--o{ ORGANIZATION_EVENTS : holds
 
-    ORGANIZATION\_PERIODS ||--o{ POSITIONS : contains
+    ORGANIZATION_PERIODS ||--o{ POSITIONS : contains
 
-    TRAINING\_BATCHES ||--o{ TRAINING\_PARTICIPANTS : contains
+    TRAINING_BATCHES ||--o{ TRAINING_PARTICIPANTS : contains
 
     USERS {  
         int id PK  
         string email  
-        string password\_hash  
+        string password_hash  
         string role "SuperAdmin, Kaderisasi, BPW, Humas, Member"  
     }
 
     PROFILES {  
         int id PK  
-        int user\_id FK  
-        string full\_name  
+        int user_id FK  
+        string full_name  
         string nik "Encrypted"  
         string phone  
         string address  
-        string kta\_number "Unique"  
-        string qr\_code\_hash  
-        enum membership\_status "Anggota, AB1, AB2, AB3"  
-        boolean is\_mentor  
-        boolean is\_instructor  
+        string kta_number "Unique"  
+        string qr_code_hash  
+        enum membership_status "Anggota, AB1, AB2, AB3"  
+        boolean is_mentor  
+        boolean is_instructor  
     }
 
     ORGANIZATIONS {  
         int id PK  
         string name "e.g., PD Bandung"  
         enum level "PP, PW, PD, PK"  
-        int parent\_id FK "Self Reference for Hierarchy"  
-        string location\_city  
+        int parent_id FK "Self Reference for Hierarchy"  
+        string location_city  
     }
 
-    ORGANIZATION\_PERIODS {  
+    ORGANIZATION_PERIODS {  
         int id PK  
-        int organization\_id FK  
-        string sk\_number "Nomor SK"  
-        string period\_name "e.g., Periode 2024-2026"  
-        date start\_date  
-        date end\_date  
-        boolean is\_active  
+        int organization_id FK  
+        string sk_number "Nomor SK"  
+        string period_name "e.g., Periode 2024-2026"  
+        date start_date  
+        date end_date  
+        boolean is_active  
     }
 
     POSITIONS {  
         int id PK  
-        int period\_id FK  
-        int profile\_id FK  
-        string position\_name "e.g., Ketua Umum, Kabid"  
+        int period_id FK  
+        int profile_id FK  
+        string position_name "e.g., Ketua Umum, Kabid"  
     }
 
-    TRAINING\_BATCHES {  
+    TRAINING_BATCHES {  
         int id PK  
-        int organization\_id FK  
-        int mot\_profile\_id FK "Master of Training (must be instructor)"  
+        int organization_id FK  
+        int mot_profile_id FK "Master of Training (must be instructor)"  
         enum type "DM1, DM2, DM3, DPMK, TFI, TPD, OTHER"  
         string location  
-        date start\_date  
-        date end\_date  
+        date start_date  
+        date end_date  
         string status "Draft, Ongoing, Completed"  
     }
 
-    ORGANIZATION\_EVENTS {  
+    ORGANIZATION_EVENTS {  
         int id PK  
-        int organization\_id FK  
+        int organization_id FK  
         enum type "MUKTAMAR, MUSYAWARAH, RAPIM, RAKOR, OTHER"  
         string name "e.g. Musda X Bandung"  
         string location  
-        date start\_date  
-        date end\_date  
+        date start_date  
+        date end_date  
         text description  
     }
 
     NEWS {  
         int id PK  
-        int organization\_id FK  
-        int author\_profile\_id FK  
+        int organization_id FK  
+        int author_profile_id FK  
         string title  
         text content  
-        timestamp published\_at  
+        timestamp published_at  
     }  
 ```
